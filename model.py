@@ -31,9 +31,9 @@ class wareHouse:
         return self.map
 
 class carStatus:
-    def __init__(self):
+    def __init__(self,num):
         self.reset_data={"index":None,"status":False,"destPoint":None,"prePoint":None}
-        self.status=[self.reset_data]
+        self.status=[{"index":x,"status":False,"destPoint":None,"prePoint":None}.copy() for x in range(num)]
     
     def call(self,index,destination):
         self.status[index]['index']=index
@@ -53,4 +53,6 @@ class carStatus:
         return len(self.status)
 
     def reset(self,index):
-        self.status[index]=self.reset_data.copy()
+        self.status[index]['status']=self.reset_data['status']
+        self.status[index]['destPoint']=self.reset_data['destPoint']
+        self.status[index]['prePoint']=self.reset_data['prePoint']
